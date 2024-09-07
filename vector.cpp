@@ -1,0 +1,60 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+void find_keyPair(int arr[],int n,int target){
+for(int i=0;i<n;i++){
+    for(int j=0;j<n;j++){
+      if(target==arr[i]+arr[j]){
+        cout<<"The sum index of array is: "<<i<<" "<<j<<" "<<endl;
+      }
+    }
+}
+}
+int pivote(int arr[],int n){
+    for(int i=0;i<n;i++){
+    int lsum=0;
+    int rsum=0;
+    for(int j=0;j<i;j++){
+        lsum += arr[j];
+    }
+    for(int j=i+1;j<n;j++){
+        rsum += arr[j];
+    }
+    if(lsum==rsum){
+        cout<<"index is :"<<i<<endl;
+        cout<<"value is :"<<arr[i];
+        return i;
+    }
+    
+}
+return -1;
+    }
+int epivote(int arr[],int n){
+    int lsum[]={};
+    int rsum[]={};
+    for(int i=0;i<n;i++){
+        lsum[i]=lsum[i-1]+arr[i-1];
+        
+    }
+    for(int i=n-2;i>=0;i--){
+        rsum[i]=rsum[i+1]+arr[i+1];
+    }
+    for(int i=0;i<n;i++){
+        if(lsum[i]==rsum[i]){
+            cout<<"index is :"<<endl;
+            return i;
+
+        }
+        
+    }
+    return -1;
+
+}
+   
+int main(){
+    int arr[]={1,7,3,6,5};
+     find_keyPair(arr,5,3);
+     pivote(arr,5);
+     epivote(arr,5);
+    return 0;
+}
