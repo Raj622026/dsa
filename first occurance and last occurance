@@ -1,0 +1,102 @@
+#include<iostream>
+using namespace std;
+
+int firstoccurance(int arr[],int n,int target){
+    int s=0;
+    int e=n-1;
+    int mid,index;
+    while(s<=e){
+     
+    mid=s+(e-s)/2;
+     
+     if(arr[mid]==target){
+
+         
+        e=mid-1;
+        index=mid;
+       //
+     }
+     else if(target>arr[mid]){
+        s=mid+1;
+        
+     }
+     else {
+        e=mid-1;
+     }
+     
+    }
+   return index;
+     
+}
+
+int lastoccurance(int arr[],int n,int target){
+    int s=0;
+    int e=n-1;
+    int mid,index;
+    while(s<=e){
+     
+    mid=s+(e-s)/2;
+     
+     if(arr[mid]==target){
+
+         
+        s=mid+1;
+        index=mid;
+       //
+     }
+     else if(target>arr[mid]){
+        s=mid+1;
+        
+     }
+     else {
+        e=mid-1;
+     }
+     
+    }
+    return index;
+     
+}
+void totalocc(int arr[],int n){
+
+int count;
+for(int i=0;i<n;i++){
+    if(arr[i]==-1){
+        continue;
+    }
+    count=1;
+    for(int j=i+1;j<n;j++){
+        if(arr[i]==arr[j]){
+            count++;
+            arr[j]=-1;
+        }
+    }
+    cout<<arr[i]<<" " <<count<<endl;
+
+}
+}
+
+void revarray(int arr[],int n){
+    int ans[100];
+    int index=-1;
+for(int i=n-1;i>=0;i--){
+index++;
+ans[index]=arr[i];
+}
+cout<<index<<endl;
+for(int i=0;i<=index;i++){
+cout<<ans[i]<<" ";
+}
+
+}
+
+
+int main(){
+    int arr[]={10,20,20,20,20,40,50,60};
+     int total_occ = lastoccurance(arr,8,20)-firstoccurance(arr,8,20)+1;
+ cout<<total_occ;
+   int arr[]={13,4,3,3,4,21};
+   int x=5;
+   revarray(arr,6);
+  totalocc(arr,6);
+    return 0;
+}
