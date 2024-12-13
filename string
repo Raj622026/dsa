@@ -1,0 +1,88 @@
+#include<iostream>
+using namespace std;
+int getlength(char arr[],int size){
+    int count=0;
+    for(int i=0;i<size;i++){
+        if(arr[i]=='\0'){
+            break;
+        }else{
+         count++;
+        }
+    }
+    return count;
+}
+void replacechar(char original,char newchar,char arr[],int size){
+    for(int i=0;i<size;i++){
+        if(arr[i]==original){
+            arr[i]=newchar;
+        }
+        else{
+            continue;
+        }
+    }
+
+}
+void reversechararray(char arr[],int size){
+    int i=0;
+    int j=size-1;
+    while(i<=j){
+        swap(arr[i],arr[j]);
+        i++;j--;
+    }
+    cout<<arr<<endl;
+}
+void convertintoUpercase(char arr[],int size){
+    for(int i=0;i<size;i++){
+        char c=arr[i];
+        if(c>='a'&&c<='z'){
+            c=c-'a'+'A';
+        }
+        arr[i]=c;
+    }
+    cout<<arr;
+}
+void convertintoLowercase(char arr[],int size){
+    for(int i=0;i<size;i++){
+        char c=arr[i];
+        if(c>='A'&&c<='Z'){
+            c=c-'A'+'a';
+        }
+        arr[i]=c;
+    }
+    cout<<arr;
+}
+bool checkPalindrome(char arr[],int size){
+    int i=0;
+    int j=size-1;
+    for(int i=0;i<size;i++){
+        while(i<=j){
+          if(arr[i]==arr[j]){
+            i++;
+            j--;
+        }
+        else{
+            return false;
+        
+        }
+
+    }
+
+       
+  }
+    return true;
+}
+int main(){
+     char arr[1000];
+    cin.getline(arr,100);
+     cout<<"your char is: "<<arr<<endl;
+    //  int ans=getlength(arr,100);
+    //  cout<<ans;
+    // replacechar('#','$',arr,1000);
+    // cout<<arr;
+    // reversechararray(arr,12);
+    // convertintoUpercase(arr,5);
+    // convertintoLowercase(arr,5);
+    // int ans=(checkPalindrome(arr,10));
+    // cout<<ans;
+    return 0;
+}
