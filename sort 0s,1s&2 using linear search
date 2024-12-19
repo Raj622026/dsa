@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int zerocount=0;
+int onecount=0;
+int twocount=0;
+void sortzerosesonestwoes(int arr[],int n){
+    for(int i=0;i<=n;i++){
+     if(arr[i]==0){
+        zerocount++;
+     }
+     if(arr[i]==1){
+        onecount++;
+     }
+     if(arr[i]==2){
+        twocount++;
+     }
+    }
+    cout<<zerocount<<onecount<<twocount<<endl;
+    for(int i=0;i<zerocount;i++){
+        arr[i]=0;
+    }
+    int res=zerocount+onecount;
+    for(int i=zerocount;i<res;i++){
+        arr[i]=1;
+    }
+    for(int i=res;i<res+twocount;i++){
+        arr[i]=2;
+    }
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+int main(){
+   int arr[]={1,0,2,2,2,1,0,0,1,2};
+   
+   sortzerosesonestwoes(arr,10);
+   return 0;
+}
