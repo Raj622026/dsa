@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int main(){
+    string str;
+    cin>>str;
+    cout<<"string is: "<<str;
+
+
+   string fname="mayank";
+   string lname="raj";
+  cout<<"sum of two string: "<<fname<<" "<<lname; 
+
+
+ string name="maharana pratap";
+ name.clear();
+ if(name.empty()){
+    cout<<"string is empty";
+    }
+    else{
+       cout<<" string is not empty";
+    }
+
+
+  auto it = name.begin();
+
+     while(it != name.end()) {
+        cout << *it << " ";
+         it++;
+     }
+    cout << endl;
+
+    
+
+
+
+   return 0;
+}
