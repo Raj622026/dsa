@@ -1,0 +1,40 @@
+#include<iostream>
+#include<string>
+using namespace std;
+bool isAlphanumric(char ch){
+  if((ch>='0'&& ch<='9') ||  (tolower(ch)>='a' && tolower(ch)<='z')){
+     return true;
+  }
+else
+  return false;
+}
+bool validpalindrome(string str){
+    int n=str.length();
+    int s=0;
+    int e=n-1;
+    while(s<=e){
+        if(!isAlphanumric(str[s])){
+            s++;
+            continue;
+        }
+        if(!isAlphanumric(str[e])){
+          e--;
+          continue;
+        }
+
+        if(tolower(str[s])!=tolower(str[e])){
+            return false;
+        }
+        else{
+            s++;e--;
+        }
+    }
+    return true;
+  }
+int main(){
+   string str="MaD&aM";
+    bool ans= validpalindrome(str);
+    cout<<"ans is :"<<ans<<endl;
+    return 0;
+
+}
