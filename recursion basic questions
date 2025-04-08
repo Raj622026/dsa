@@ -22,3 +22,24 @@ int main(){
    cout<<ans;
     return 0;
 }
+#include<iostream>
+#include<string>
+using namespace std;
+void solvepermutation(string st,int i){
+     if(i>=st.length()){
+        cout<<st<<" "<<endl;
+        return ;
+     }
+     for(int j=i;j<st.length();j++){
+        swap(st[i],st[j]);
+        solvepermutation(st,i+1);
+     }
+}
+
+ int main(){
+    string st="123";
+    int i=0;
+    solvepermutation(st,i);
+
+return 0;
+}
