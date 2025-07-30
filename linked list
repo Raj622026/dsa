@@ -1,0 +1,164 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+
+    Node* prev;
+    int data;
+    Node* next;
+     
+    Node(int value){
+        data=value;
+        prev=NULL;
+        next=NULL;
+    }
+
+};
+  class doublylinkedlist{
+    public:
+    Node* head=NULL;
+    Node* tail=NULL;
+    void insertAthead(int value ,Node*&head,Node* &tail){
+        if(head==NULL&& tail==NULL){
+            Node* newNode=new Node(value);
+            head=newNode;
+            tail=newNode;
+        }
+        else{
+            Node *newNode=new Node(value);
+            newNode->next=head;
+            head->prev=newNode;
+            head=newNode;
+        }
+
+        
+    }
+    void printNode(Node*head){
+        
+        Node* temp=head;
+        while(temp !=NULL){
+            cout<<temp->data<< "->";
+            temp=temp->next;
+        }
+       
+        cout<<"NULL";
+    }
+  void insertAttail(int value,Node *&head,Node* &tail){
+    if(tail==NULL&&head==NULL){
+        Node* newNode=new Node(value);
+        head=newNode;
+        tail=newNode;
+    }
+    else{
+        Node* newNode=new Node(value);
+        newNode->prev=tail;
+        tail->next=newNode;
+        tail=newNode;
+
+    }
+  }
+  int getlength(Node*&head){
+    Node* temp=head;
+    int count=0;
+    while (temp!=NULL)
+    {
+        count++;
+        temp=temp->next;
+    }
+    return count;
+  }
+  void insertAtposition(int position,int value,Node* &head,Node* &tail){
+    int len=getlength(head);
+    if(position==1){
+        insertAthead(value,head,tail);
+    }
+    else if(position==len+1){
+         insertAttail(value,head,tail);
+    }
+    else{
+      Node* temp=head;
+      for(int i=0;i<position-2;i++){
+        temp=temp->next;
+      }
+      Node* newNode=new Node(value);
+      Node* forward=temp->next;
+      newNode->prev=temp;
+      temp->next=newNode;
+      forward->prev=newNode;
+      newNode->next=forward;
+        
+    }
+  }
+  bool searchinlist(Node* head,int target){
+    Node* temp=head;
+    while(temp!=NULL){
+      if(temp->data=target){
+        return true;
+      }
+      temp=temp->next;
+    }
+    return false;
+  }
+  void deleteAtposition(int position,Node* &head,Node* &tail){
+    int length=getlength(head);
+    if(head==NULL&& tail==NULL){
+     cout<<"no node are persent";
+     return;
+    }
+    else if(head==tail){
+      Node* temp=head;
+      head=NULL;
+      tail=NULL;
+      delete temp;
+    }
+    else if(position==1){
+      Node* temp=head;
+      head=head->next;
+      head->prev=NULL;
+      temp->next=NULL;
+      delete temp;
+    }
+    else if(length==position){
+      Node* temp=tail;
+      tail=tail->prev;
+      tail->next=NULL;
+      tail->prev=NULL;
+        delete temp;
+
+    }
+    else {
+      Node *backward=head;
+      for(int i=0;i<position-2;i++){
+        backward=backward->next;
+      }
+      Node* curr=backward->next;
+      Node* forward=curr->next;
+      backward->next=forward;
+      forward->prev=backward;
+      curr->next=NULL;
+      curr->prev=NULL;
+      delete curr;
+    }
+  }
+
+};
+int main(){
+   
+doublylinkedlist list;
+Node *head=NULL;
+Node *tail=NULL;
+
+list.insertAthead(10,head,tail);
+list.insertAthead(20,head,tail);
+list.insertAttail(30,head,tail);
+list.insertAttail(40,head,tail);
+list.insertAtposition(5,50,head,tail);
+list.deleteAtposition(5,head,tail);
+
+
+  list.printNode(head);   
+ 
+   
+    return 0;
+}
