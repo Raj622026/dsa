@@ -1,2 +1,1 @@
-# dsa
-first dsa program
+# Data structure & algorithm
