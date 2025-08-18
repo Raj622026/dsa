@@ -1,1 +1,53 @@
+// stack using reverse string
+#include<iostream>
+#include<stack>
+using namespace std;
+int main(){
+  stack<char>s;
+  string name="mayankraj";
+  //insert string in stack
+  for(int i=0;i<name.length();i++){
+    char ch=name[i];
+    s.push(ch);
+ }
+ while(!s.empty()){
+ cout<<s.top()<<" ";
+    s.pop();
+ }
+    return 0;
+}
 
+//In Stack using InserAtBottom
+#include<iostream>
+#include<stack>
+using namespace std;
+ void insertAtBottom(stack<int>&s,int val){
+   //base case
+   if(s.empty()){
+    s.push(val);
+    return;
+   }
+   //1 case i handle
+   int topElement=s.top();
+   s.pop();
+    //recursion
+    insertAtBottom(s,val);
+    // backtrack
+
+    s.push(topElement);
+ }
+int main(){
+  stack<int>s;
+  s.push(10);
+  s.push(20);
+  s.push(30);
+  s.push(40);
+  int val=50;
+  insertAtBottom(s,val);
+
+ while(!s.empty()){
+ cout<<s.top()<<" ";
+    s.pop();
+ }
+    return 0;
+}
