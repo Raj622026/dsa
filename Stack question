@@ -84,4 +84,46 @@ int main(){
     return 0;
 }
 
-// 
+// nextSmaller and prevsmaller
+
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<algorithm>
+using namespace std;
+void nextSmaller(int arr[],int n,vector<int>&ans){
+  stack<int>st;
+  st.push(-1);
+  for(int i=n-1; i>=0; i--){
+    int ele  = arr[i];
+    while(st.top() >= ele){
+        st.pop();
+    }
+    ans.push_back(st.top());
+    st.push(ele);
+  }
+}
+void prevSmaller(int arr[],int n,vector<int>&ans){
+    stack<int>s;
+    s.push(-1);
+    for(int i=0;i<n;i++){
+        int ele=arr[i];
+        while(s.top()>ele){
+            s.pop();
+        }
+        ans.push_back(s.top());
+        s.push(ele);
+    }
+}
+int main(){
+   int arr[] = {8,4,6,2,3};
+  int n = 5;
+  vector<int>ans;
+//   nextSmaller(arr,n,ans);
+//   reverse(ans.begin(),ans.end());
+prevSmaller(arr,n,ans);
+  for(auto i:ans){
+    cout<<i<<" ";
+  }
+    return 0;
+}
