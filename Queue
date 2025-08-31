@@ -87,4 +87,102 @@ int main(){
     return 0;
 }
 // Dqueue implement using array
+#include<iostream>
+using namespace std;
+ class DeQueue{
+    public:
+    int *arr;
+    int n,front,rear;
+
+    DeQueue(int size){
+        arr=new int[size];
+       this-> n=size;
+        front=-1;rear=-1;
+    }
+    void pushFront(int val){
+       if (front == 0 && rear != -1) {
+            cout << "Overflow at Front" << endl;
+            return;
+        }
+        else if(front==-1&& rear==-1){
+            front=0;
+            rear=0;
+            arr[front]=val;
+        }
+        else{
+            front--;
+            arr[front]=val;
+        }
+
+    }
+    void pushBack(int val){
+        if(rear==n-1){
+            cout<<"Overflow"<<endl;
+        }
+       else if(front==-1&& rear==-1){
+            front++;
+            rear++;
+            arr[rear]=val;
+        }
+        else{
+            rear++;
+            arr[rear]=val;
+        }
+
+    }
+    void popFront(){
+        if(front==-1&&rear==-1){
+            cout<<"Underflow"<<endl;
+        }
+        else if(front==rear){
+            arr[front]=-1;
+            front=-1;
+            rear=-1;
+        }
+        else{
+            arr[front]=-1;
+            front++;
+        }
+
+    }
+    void popBack(){
+     if(rear==-1&& front==-1){
+        cout<<"Underflow";
+
+     }
+     else if(rear==front){
+        arr[rear]=-1;
+        rear=-1;
+        front=-1;
+     }
+     else{
+        arr[rear]=-1;
+        rear--;
+     }
+    }
+    void print(){
+        for(int i=0;i<n;i++){
+            cout<<arr[i]<<" ";
+        }
+        cout<<endl;
+    }
+   
+ };
+ int main(){
+   DeQueue d(5);
+    d.pushBack(10);
+    d.pushFront(1);
+    d.pushBack(20);
+    d.pushFront(5);
+
+    d.print();
+
+    // d.popFront();
+    // d.print();
+
+    // d.popBack();
+    // d.print();
+
+    return 0;
+ }
 
