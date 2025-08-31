@@ -18,3 +18,73 @@ int main(){
     return 0;
 }
 // implement queue using array
+#include<iostream>
+using namespace std;
+ class Queue{
+    public:
+    int *arr;
+    int n,front,rear;
+
+    Queue(int size){
+        arr=new int[size];
+       this-> n=size;
+        front=-1;rear=-1;
+    }
+    void push(int val){
+        if(rear==n-1){
+            cout<<"Overflow"<<endl;
+        }
+        //single
+        else if(front==-1&& rear==-1){
+            front=0;
+            rear=0;
+            arr[rear]=val;
+        }
+        else{
+             rear++;
+            arr[rear]=val;
+           
+        }
+
+    }
+    void pop(){
+        if(front==-1 && rear==-1){
+            cout<<"Underflow"<<endl;
+        }
+        //single element
+        else if(front==rear){
+            arr[rear]=-1;
+            front=-1;
+            rear=-1;
+        }
+        else{
+            arr[front]=-1;
+            front--;
+        }
+    }
+    void print(){
+       for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+       }cout<<endl;
+    }
+   
+ };
+int main(){
+   Queue q(5);
+   q.push(10);
+    q.print();
+   q.push(20);
+    q.print();
+   q.push(30);
+    q.print();
+   q.push(40);
+    q.print();
+   q.push(50);
+    q.print();
+   q.push(60);
+   q.print();
+  
+    return 0;
+}
+// Dqueue implement using array
+
