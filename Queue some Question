@@ -118,3 +118,43 @@ int main(){
 
    return 0;
 }
+// leetcode problem return max in siliding window
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> q;
+        vector<int> ans;
+        // make a first window
+        for (int i = 0; i < k; i++) {
+            int ele = nums[i];
+            while (!q.empty() && nums[q.back()] < ele) {
+                q.pop_back();
+            }
+            // atlist 1 element is push_back
+            q.push_back(i);
+        }
+        // store ans;
+        int index = q.front();
+        int ele = nums[index];
+        ans.push_back(ele);
+
+        // now process remaning window
+        for (int i = k; i < nums.size(); i++) {
+            // step->b remove
+            if (!q.empty() && q.front() < i - k + 1) {
+                q.pop_front();
+            }
+            // step->c add
+            int ele = nums[i];
+            while (!q.empty() && nums[q.back()] < ele) {
+                q.pop_back();
+            }
+            q.push_back(i);
+            // step->a store ans
+            int index = q.front();
+            int ansEle = nums[index];
+            ans.push_back(ansEle);
+        }
+        return ans;
+    }
+};
