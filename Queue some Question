@@ -59,3 +59,62 @@ int main(){
    return 0;
 }
 //Reverse in k Group
+#include<iostream>
+#include<queue>
+#include<stack>
+using namespace std;
+void reverseInKGroup(queue<int>&q,int k,int count ){
+     
+   if(count>=k){
+      stack<int>s;
+    for(int i=0;i<k;i++){
+        int ele=q.front();
+        q.pop();
+        s.push(ele);
+    }
+    for(int i=0;i<k;i++){
+      int ele=s.top();
+      s.pop();
+      q.push(ele);
+    }
+      reverseInKGroup(q,k,count-k);
+  }
+
+
+   else{
+    //count<k
+    for(int i=0;i<count;i++){
+        int ele=q.front();
+        q.pop();
+        q.push(ele);
+    }
+   }
+   
+}
+int main(){
+    queue<int>q;
+    int k=3;
+    
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
+    q.push(50);
+    q.push(60);
+    q.push(70);
+    q.push(80);
+    q.push(90);
+    q.push(100);
+    q.push(110);
+    int count=q.size();
+    reverseInKGroup(q,k,count);
+
+      while(!q.empty()){
+       cout<< q.front() <<" ";
+       q.pop();
+      }cout<<endl;
+
+    
+
+   return 0;
+}
