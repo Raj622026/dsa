@@ -127,3 +127,86 @@ prevSmaller(arr,n,ans);
   }
     return 0;
 }
+//
+#include<iostream>
+using namespace std;
+
+class Nstack{
+    public:
+    int *arr,*next,*top;
+    int n,s,freespot;
+    Nstack(int N,int S){
+        n=N; s=S;
+        arr=new int[s];
+        top=new int[n];
+        next=new int[s];
+        //initlise top
+        for (int  i = 0; i <n; i++) top[i]=-1;
+        //initlise next;
+        for(int i=0;i<s-1;i++) next[i]=i+1;
+        next[s-1]=-1;
+
+        freespot=0;
+
+        cout << "Initialized " << n << " stacks in array of size " << s << "\n";
+        
+    }
+    bool push(int x,int m){
+        cout << "\nTrying to push " << x << " into stack " << m << "...\n";
+        
+        if(freespot==-1){
+            cout<<"overflow"<<endl;
+            return 0;
+        }
+        int index=freespot;
+        freespot=next[index];
+        arr[index]=x;
+        next[index]=top[n-1];
+        top[n-1]=index;
+        cout << "✅ Pushed " << x << " at index " << index << "\n";
+        printState();
+        return true;
+    }
+    int pop(int m){
+        cout << "\nTrying to pop from stack " << m << "...\n";
+       
+         if (top[m - 1] == -1) {
+            cout << "❌ Stack " << m << " is empty!\n";
+            return -1;
+        }
+        int index=top[m-1];
+        top[m-1]=next[index];
+        next[index]=freespot;
+        freespot=index;
+
+        cout << "✅ Popped " << arr[index] << " from index " << index << "\n";
+        printState();
+        return arr[index];
+    }
+    void printState() {
+        cout << "Current arr: ";
+        for (int i = 0; i < s; i++) cout << arr[i] << " ";
+        cout << "\n";
+
+        cout << "Current top: ";
+        for (int i = 0; i < n; i++) cout << top[i] << " ";
+        cout << "\n";
+
+        cout << "Current next: ";
+        for (int i = 0; i < s; i++) cout << next[i] << " ";
+        cout << "\n";
+
+        cout << "freeSpot: " << freespot << "\n";
+    }
+};
+int main(){
+    Nstack s(3,10);
+     s.push(10, 1);
+    s.push(20, 1);
+    s.push(30, 2);
+    s.push(40, 3);
+    s.pop(1);
+    s.pop(2);
+    s.pop(3);
+    return 0;
+}
